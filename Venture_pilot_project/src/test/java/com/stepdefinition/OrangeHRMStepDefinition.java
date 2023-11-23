@@ -7,9 +7,11 @@ import org.openqa.selenium.WebDriver;
 
 import com.actions.AdminActions;
 import com.actions.AdminUserAction;
-import com.actions.MyinfoActions;
+import com.actions.LeaveActions;
 import com.actions.LoginActions;
+import com.actions.MyinfoActions;
 import com.actions.OrganisationtActions;
+import com.actions.PimActions;
 import com.actions.SkillActions;
 //import com.actions.AdminActions;
 import com.actions.TimeActions;
@@ -28,7 +30,8 @@ public class OrangeHRMStepDefinition  {
 	MyinfoActions Bilac = new MyinfoActions();
 	SkillActions skilac = new SkillActions();
 	AdminUserAction Aduser = new AdminUserAction();
-	
+	LeaveActions Leaac = new LeaveActions();
+	PimActions pimac = new PimActions();
 
 	public OrangeHRMStepDefinition() {
 	}
@@ -282,6 +285,53 @@ public class OrangeHRMStepDefinition  {
 		String verify = Bilac.myinfoverify();
 		Assert.assertTrue(verify.contains("Praveen"));
 	    
+	}
+	@When("User clicks the leave feature")
+	public void user_clicks_the_leave_feature() {
+		Leaac.leavetype();
+	}
+
+	@When("user cliks to the configure to the field")
+	public void user_cliks_to_the_configure_to_the_field() throws InterruptedException {
+		Leaac.configure();
+	   
+	}
+
+	@When("user select the leavetype and user fills the details cliks the save")
+	public void user_select_the_leavetype_and_user_fills_the_details_cliks_the_save() throws InterruptedException {
+		Leaac.setLeavename("deepak");
+	}
+
+	@Then("user sees the adding the leave page switching")
+	public void user_sees_the_adding_the_leave_page_switching() throws InterruptedException {
+		Assert.assertTrue(Leaac.getverifyleave().contains("Leave Types"));
+	  
+	}
+	@When("User select the pim feature")
+	public void user_select_the_pim_feature() {
+		pimac.pimclick();
+	  
+	}
+
+	@When("Select the add employee category")
+	public void select_the_add_employee_category() throws InterruptedException {
+		pimac.addemployeecategory();
+	   
+	}
+
+	@When("user fills the add employee details")
+	public void user_fills_the_add_employee_details() throws InterruptedException {
+		pimac.namedetails("praveen", "kumar");
+		pimac.enable();
+		pimac.userdetails("Praveen2","Praveen@123", "Praveen@123");
+		pimac.pimsave();
+	  
+	}
+
+	@Then("user is able to see the new employee added details")
+	public void user_is_able_to_see_the_new_employee_added_details() throws InterruptedException {
+		
+		Assert.assertTrue(pimac.pimverify().contains("praveen"));
 	}
 
 

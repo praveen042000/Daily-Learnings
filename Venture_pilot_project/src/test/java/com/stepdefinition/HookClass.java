@@ -12,7 +12,7 @@ import io.cucumber.java.Scenario;
 public class HookClass {
 	@Before
 	public static void setUp() {
-		HelperClass.setUpDriver("edge");
+		HelperClass.setUpDriver("chrome");
 	}
 	
 	@After
@@ -21,7 +21,7 @@ public class HookClass {
 			final byte[] screenshot = ((TakesScreenshot) HelperClass.getDriver()).getScreenshotAs(OutputType.BYTES);
 			scenario.attach(screenshot,"image/png",scenario.getName());
 		}
-//		HelperClass.tearDown();
+		HelperClass.tearDown();
 	}
 	}
 

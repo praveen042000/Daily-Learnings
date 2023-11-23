@@ -6,7 +6,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
  
 @RunWith(Cucumber.class)
-@CucumberOptions(tags="",features="src/test/resources/Features/Myinfo.feature",
+@CucumberOptions(tags="",features="src/test/resources/Features",
 glue ="com.stepdefinition",
 plugin= {
 		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
